@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX_CalleBack</title>
+</head>
+<style>
+    body,
+    input,
+    h1 {
+        color: green;
+        font-size: 20px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <h1>Verification de L'adresse IP avec Fonction CALLBACK</h1>
+    <input type="button" onclick="httpRequest(callBack);" value="Verifier l'adresse IP">
+
+    <script type="text/javascript">
+        var xhr = new XMLHttpRequest();
+
+        function httpRequest(callBack) {
+            xhr.open("GET", "https://source.unsplash.com/random/200x200?sig=1", true);
+            xhr.send(null);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+                    callBack(xhr.responseText);
+                }
+            }
+        };
+
+        function callBack(données) {
+            //if (données == xhr.responseText) {
+            alert(xhr.responseText);
+            //} else {
+            //alert("Une erreur est survenue");
+        }
+        //}
+    </script>
+
+
+</body>
+
+</html>
